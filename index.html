@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <title>Loading...</title>
 
+<!-- Fallback redirect (works even if JS fails) -->
+<meta http-equiv="refresh" content="6; url=https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+
 <style>
   html, body {
     margin: 0;
@@ -87,7 +90,7 @@
     if (progress === 100) {
       clearInterval(interval);
       setTimeout(() => {
-        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
       }, 700);
     }
   }, 500);
