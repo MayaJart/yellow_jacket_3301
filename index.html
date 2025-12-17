@@ -18,29 +18,30 @@
   }
 
   .box {
-    width: 70%;
+    width: 80%;
     max-width: 420px;
     text-align: center;
   }
 
   .bar {
     width: 100%;
-    height: 16px;
-    border: 1px solid #555;
-    margin-top: 20px;
+    height: 22px;                 /* BIGGER */
+    border: 2px solid #888;       /* MORE CONTRAST */
+    margin-top: 24px;
+    background: #000;             /* BAR BACKGROUND */
   }
 
   .fill {
     height: 100%;
     width: 0%;
-    background: #00ccff;
+    background: linear-gradient(90deg, #00ffff, #00aaff);
     transition: width 0.25s;
   }
 
   .text {
-    margin-top: 12px;
+    margin-top: 14px;
     font-size: 14px;
-    opacity: 0.8;
+    opacity: 0.9;
   }
 </style>
 </head>
@@ -56,6 +57,40 @@
 </div>
 
 <script>
-  const fill = document.getElementById("fil
+  const fill = document.getElementById("fill");
+  const text = document.getElementById("text");
 
-                                       
+  let percent = 0;
+
+  const messages = [
+    "Starting...",
+    "Loading files...",
+    "Preparing content...",
+    "Finalizing..."
+  ];
+
+  const interval = setInterval(() => {
+    if (percent < 99) {
+      percent += 2;
+      fill.style.width = percent + "%";
+      text.textContent = messages[Math.floor(percent / 25)] || "Loading...";
+    } else {
+      clearInterval(interval);
+
+      fill.style.width = "99%";
+      text.textContent = "Almost done...";
+
+      setTimeout(() => {
+        fill.style.width = "100%";
+        text.textContent = "Complete";
+
+        setTimeout(() => {
+          window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }, 500);
+      }, 3000);
+    }
+  }, 120);
+</script>
+
+</body>
+</html>
