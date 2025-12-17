@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Loading...</title>
 
 <style>
-  html, body {
+  body {
     margin: 0;
-    width: 100%;
-    height: 100%;
     background: #111;
     color: white;
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
-  .box {
+  .container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 80%;
     max-width: 420px;
     text-align: center;
@@ -25,35 +24,35 @@
 
   .bar {
     width: 100%;
-    height: 22px;                 /* BIGGER */
-    border: 2px solid #888;       /* MORE CONTRAST */
-    margin-top: 24px;
-    background: #000;             /* BAR BACKGROUND */
+    height: 24px;
+    background: #222;
+    border: 2px solid #aaa;
+    margin-top: 20px;
   }
 
   .fill {
     height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #00ffff, #00aaff);
-    transition: width 0.25s;
+    width: 1px; /* START VISIBLE */
+    background: #00ccff;
   }
 
   .text {
     margin-top: 14px;
     font-size: 14px;
-    opacity: 0.9;
   }
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
   <h2>Loading Super Duper Cool Thing</h2>
+
   <div class="bar">
     <div class="fill" id="fill"></div>
   </div>
-  <div class="text" id="text">Starting...</div>
+
+  <div class="text" id="text">Starting…</div>
 </div>
 
 <script>
@@ -63,33 +62,34 @@
   let percent = 0;
 
   const messages = [
-    "Starting...",
-    "Loading files...",
-    "Preparing content...",
-    "Finalizing..."
+    "Starting…",
+    "Loading files…",
+    "Preparing content…",
+    "Finalizing…"
   ];
 
-  const interval = setInterval(() => {
+  const timer = setInterval(() => {
     if (percent < 99) {
-      percent += 2;
+      percent += 1;
       fill.style.width = percent + "%";
-      text.textContent = messages[Math.floor(percent / 25)] || "Loading...";
+      text.textContent = messages[Math.floor(percent / 25)] || "Loading…";
     } else {
-      clearInterval(interval);
+      clearInterval(timer);
 
       fill.style.width = "99%";
-      text.textContent = "Almost done...";
+      text.textContent = "Almost done…";
 
       setTimeout(() => {
         fill.style.width = "100%";
         text.textContent = "Complete";
 
         setTimeout(() => {
-          window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+          window.location.href =
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
         }, 500);
-      }, 3000);
+      }, 3000); // freeze time
     }
-  }, 120);
+  }, 80);
 </script>
 
 </body>
