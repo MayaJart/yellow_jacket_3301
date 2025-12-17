@@ -16,7 +16,6 @@
     overflow: hidden;
   }
 
-  /* Loading screen */
   #loader {
     position: fixed;
     inset: 0;
@@ -46,16 +45,6 @@
     font-size: 14px;
     opacity: 0.8;
   }
-
-  /* Video */
-  video {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-  }
 </style>
 </head>
 
@@ -69,15 +58,9 @@
   <div class="status" id="status">Initializing...</div>
 </div>
 
-<video id="video" autoplay loop playsinline>
-  <source src="rickroll.mp4" type="video/mp4">
-</video>
-
 <script>
   const fill = document.getElementById("fill");
   const status = document.getElementById("status");
-  const loader = document.getElementById("loader");
-  const video = document.getElementById("video");
 
   const messages = [
     "Initializing...",
@@ -104,10 +87,8 @@
     if (progress === 100) {
       clearInterval(interval);
       setTimeout(() => {
-        loader.style.display = "none";
-        video.style.display = "block";
-        video.play();
-      }, 500);
+        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+      }, 700);
     }
   }, 500);
 </script>
